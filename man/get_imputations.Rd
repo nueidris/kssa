@@ -16,7 +16,9 @@ You can choose between the following:
 \item{"all" - get imputed values for all methods - Default}
 \item{"auto.arima" - State space representation of an ARIMA model}
 \item{"StructTS" - State space representation of a structural model}
-\item{"seadec" - Seasonal decomposition with Kalman smoothing}
+\item{"seadec_kalman" - Seasonal decomposition with Kalman smoothing}
+\item{"seadec_ma" - Seasonal decomposition  with imputation by Weighted Moving Average}
+\item{"seadec_random" - Seasonal decomposition imputation by Random Sample}
 \item{"linear_i" - Linear interpolation}
 \item{"spline_i" - Spline interpolation}
 \item{"stine_i" - Stineman interpolation}
@@ -56,8 +58,8 @@ my_imputations <- get_imputations(airgap_na_ts, methods = "all")
 # my_imputations contains the imputed time series with all methods.
 # Access it and choose the one from the best method for your purposes
 
-my_imputations$seadec
-plot.ts(my_imputations$seadec)
+my_imputations$seadec_kalman
+plot.ts(my_imputations$seadec_kalman)
 }
 
 

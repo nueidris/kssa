@@ -27,7 +27,9 @@ You can choose between the following:
 \item{"all" - compare among all methods automatically - Default}
 \item{"auto.arima" - State space representation of an ARIMA model}
 \item{"StructTS" - State space representation of a structural model}
-\item{"seadec" - Seasonal decomposition with Kalman smoothing}
+\item{"seadec_kalman" - Seasonal decomposition with Kalman smoothing}
+\item{"seadec_ma" - Seasonal decomposition  with imputation by Weighted Moving Average}
+\item{"seadec_random" - Seasonal decomposition imputation by Random Sample}
 \item{"linear_i" - Linear interpolation}
 \item{"spline_i" - Spline interpolation}
 \item{"stine_i" - Stineman interpolation}

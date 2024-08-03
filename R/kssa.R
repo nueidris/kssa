@@ -10,7 +10,9 @@
 #'    \item{"all" - compare among all methods automatically - Default}
 #'    \item{"auto.arima" - State space representation of an ARIMA model}
 #'    \item{"StructTS" - State space representation of a structural model}
-#'    \item{"seadec" - Seasonal decomposition with Kalman smoothing}
+#'    \item{"seadec_kalman" - Seasonal decomposition with Kalman smoothing}
+#'    \item{"seadec_ma" - Seasonal decomposition  with imputation by Weighted Moving Average}
+#'    \item{"seadec_random" - Seasonal decomposition imputation by Random Sample}
 #'    \item{"linear_i" - Linear interpolation}
 #'    \item{"spline_i" - Spline interpolation}
 #'    \item{"stine_i" - Stineman interpolation}
@@ -177,7 +179,8 @@ kssa <- function(x_ts, # Time-series
     "actual_methods" = c(
       "auto.arima", "StructTS", "linear_i",
       "spline_i", "stine_i", "simple_ma", "linear_ma",
-      "exponential_ma", "seadec", "locf", "stl"
+      "exponential_ma", "seadec_kalman", "seadec_ma",
+      "seadec_random", "locf", "stl"
     ),
     "formulas_x_ts" = c(
       "na_kalman(x_ts,model='auto.arima',smooth = TRUE,nit = -1)",
@@ -189,6 +192,8 @@ kssa <- function(x_ts, # Time-series
       "na_ma(x_ts,k=3,weighting = 'linear')",
       "na_ma(x_ts,k=3,weighting = 'exponential')",
       "na_seadec(x_ts,algorithm = 'kalman')",
+      "na_seadec(x_ts,algorithm = 'ma')",
+      "na_seadec(x_ts,algorithm = 'random')",
       "na_locf(x_ts,option = 'locf',na_remaining = 'rev')",
       "na.interp(x_ts)"
     ),
@@ -202,6 +207,8 @@ kssa <- function(x_ts, # Time-series
       "na_ma(newmdsimulation,k=3,weighting = 'linear')",
       "na_ma(newmdsimulation,k=3,weighting = 'exponential')",
       "na_seadec(newmdsimulation,algorithm = 'kalman')",
+      "na_seadec(newmdsimulation,algorithm = 'ma')",
+      "na_seadec(newmdsimulation,algorithm = 'random')",
       "na_locf(newmdsimulation,option = 'locf',na_remaining = 'rev')",
       "na.interp(newmdsimulation)"
     )
@@ -211,7 +218,8 @@ kssa <- function(x_ts, # Time-series
     start_methods <- c(
       "auto.arima", "StructTS", "linear_i",
       "spline_i", "stine_i", "simple_ma", "linear_ma",
-      "exponential_ma", "seadec", "locf", "stl"
+      "exponential_ma", "seadec_kalman", "seadec_ma",
+      "seadec_random", "locf", "stl"
     )
   } else {
     start_methods <- start_methods
@@ -221,7 +229,8 @@ kssa <- function(x_ts, # Time-series
     actual_methods <- c(
       "auto.arima", "StructTS", "linear_i",
       "spline_i", "stine_i", "simple_ma", "linear_ma",
-      "exponential_ma", "seadec", "locf", "stl"
+      "exponential_ma", "seadec_kalman", "seadec_ma",
+      "seadec_random", "locf", "stl"
     )
   } else {
     actual_methods <- actual_methods
